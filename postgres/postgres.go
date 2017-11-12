@@ -5,7 +5,7 @@ import (
 	"database/sql"
 	"fmt"
 
-	"github.com/standielpls/tempapi"
+	"github.com/essce/tempapi"
 
 	// Blank import of pq
 	_ "github.com/lib/pq"
