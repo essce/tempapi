@@ -41,6 +41,11 @@ func New() Postgres {
 	}
 }
 
+// Close shutdowns the pg instance.
+func (p *Postgres) Close() {
+	p.db.Close()
+}
+
 // InsertReading inserts the reading.
 func (p *Postgres) InsertReading(ctx context.Context, temp, humidity float64) (string, error) {
 	var id string
@@ -49,7 +54,7 @@ func (p *Postgres) InsertReading(ctx context.Context, temp, humidity float64) (s
 		(temperature, humidity, added_at)
 		VALUES ($1, $2, now())
 		RETURNING id;
-	`).Scan(&id)
+	`, temp, humidity).Scan(&id)
 
 	return id, err
 }

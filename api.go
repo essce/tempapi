@@ -11,6 +11,6 @@ type Reading struct {
 
 // ReadingStore is where the readings are going to be stored.
 type ReadingStore interface {
-	InsertReading(context.Context, Reading) (string, error)
+	InsertReading(ctx context.Context, temp, humidity float64) (string, error)
 	ListReadings(context.Context) ([]Reading, error)
 }
